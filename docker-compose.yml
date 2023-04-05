@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  mysqldb:
+    image: mysql:8.0.32
+    container_name: db-mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: city
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_USERNAME: root
+  cl-app:
+    container_name: cl-app
+    depends_on:
+      - mysqldb
+    command: sh -c './wait-for mysqldb:3306 -- npm start'
+    build:
+      context: .
+      dockerfile: Dockerfile_app
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_URL: jdbc:mysql://app_db:3306/city?useUnicode=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: rootroot
+    links:
+      - "mysqldb:app_db"
+volumes:
+  myapp:
