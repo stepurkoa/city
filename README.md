@@ -16,6 +16,8 @@ Enterprise-grade "city list" application which allows the user to do:
 
 [Postman](https://www.postman.com/downloads/)
 
+[node-npm](https://nodejs.org/en/download)
+
 Browser
 
 P.S. select version for your OS
@@ -33,6 +35,9 @@ P.S. select version for your OS
      build application without tests
   
         mvn clean install -Dmaven.test.skip=true
+- Build ui part - go to src/main/ui 
+
+        npm install
 
 - Build docker images using docker compose file
 
@@ -42,9 +47,14 @@ P.S. select version for your OS
 
         docker compose up
 
+- Run UI - go to src/main/ui
+
+        npm start
+
 - Visit page for check service availability
 
         http://localhost:8080/index.html
+        http://localhost:4200
 
 - Stop docker compose 
 
@@ -52,7 +62,9 @@ P.S. select version for your OS
 
 
 # Test application
-For test application functionality we can use 2 approach
+For test application functionality we can use 3 approach
+- [Open UI page](http://localhost:4200) - new run ui
+
  - [Open api webpage](http://localhost:8080/swagger-ui.html)
 
  - [Postman collection](CityList.postman_collection.json) - this file needs to import into postman

@@ -1,0 +1,9 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>{{city.name}}</mat-card-title>
+  </mat-card-header>
+  <img class="card__img" (error)="handleMissingImage($event)" mat-card-image [src]="city.photo" alt="Photo of {{city.name}}" class="center">
+  <mat-card-actions>
+    <button (click)="handleClick()" mat-button>EDIT</button>
+  </mat-card-actions>
+</mat-card>
