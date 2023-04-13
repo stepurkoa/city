@@ -6,18 +6,21 @@
 
   <app-header (searchClick)="onSearchClick($event)"></app-header>
   <div class="pagination">
-    <h1>City list</h1>
+    <h1>City list #{{pageInfo.pageNumber + 1}}</h1>
+
     <mat-paginator #paginator
                class="demo-paginator"
                (page)="handlePageEvent($event)"
                aria-label="Select page"
                [length]="pageInfo.totalElements"
                [pageSize]="pageInfo.pageSize"
-               [pageIndex]="pageInfo.pageNumber"/>
+               [pageIndex]="pageInfo.pageNumber"
+    >
+    </mat-paginator>
   </div>
   <app-cards-list>
     <p *ngIf="!cityList.length">No results....</p>
-    <app-card
+    <app-card 
       *ngFor="let city of cityList"
       [city]="city"
       (editButtonClick)="handleEditClick($event)"
@@ -30,7 +33,7 @@
       <h2>Edit City Card</h2>
       <span> id: {{cityToEdit.id}}</span>
     </div>
-
+    
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
       <mat-form-field appearance="fill">
